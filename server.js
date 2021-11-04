@@ -15,6 +15,7 @@ app.use(express.static("images"))
 app.use(limiter)
 app.use(cors())
 app.get("/api/kurumi", (req, res) => {
+    res.header("Content-type: application/json; charset=UTF-8")
     const result = {}
     result.code = 200
     const imageList = fs.readdirSync("./images/")
