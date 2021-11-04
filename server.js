@@ -14,7 +14,24 @@ app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static("images"))
 app.use(limiter)
 app.use(cors())
-app.get("/api/kurumi", (req, res) => {
+// api key
+const apikey = [
+
+    "mr8es2r0hK",
+    "0bk3s6IAyq",
+    "T6j6vW01A2",
+    "mr83ssr0hK",
+    "mr8e2r0hK",
+    "mr8es2r0hK",
+    "mr8esar0hK",
+    "mr8esgr0hK",
+    "mr8esar0hK"
+]
+app.get("/", (req, res) => {
+    res.send("https://github.com/HELLSNAKES/image-random-api")
+})
+app.get("/api/kurumi/:key", (req, res) => {
+    const key = req.params.key
     const result = {}
     result.code = 200
     const imageList = fs.readdirSync("./images/")
@@ -22,11 +39,17 @@ app.get("/api/kurumi", (req, res) => {
     result.url = `127.0.0.1:5000/${randomImage}`
     result.author = "HELLSNAKE , Sunglows Team"
     result.source = "https://github.com/HELLSNAKES/image-random-api"
-    console.log(result)
     res.header("Content-Type", "application/json")
-    res.send(JSON.stringify(result))
+    if (apikey.includes(key)) {
+        res.send(JSON.stringify(result))
+        console.log(result)
+    } else {
+        const result = {}
+        result.code = 403
+        result.message = "Invalid API key"
+        res.send(JSON.stringify(result))
+    }
 })
-
 app.listen(port, "0.0.0.0", function () {
     console.log(`Server listening on port ${port}\n`)
 })
