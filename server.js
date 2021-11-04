@@ -15,7 +15,6 @@ app.use(express.static("images"))
 app.use(limiter)
 app.use(cors())
 app.get("/api/kurumi", (req, res) => {
-    res.header("Content-type: application/json; charset=UTF-8")
     const result = {}
     result.code = 200
     const imageList = fs.readdirSync("./images/")
@@ -24,6 +23,7 @@ app.get("/api/kurumi", (req, res) => {
     result.author = "HELLSNAKE , Sunglows Team"
     result.source = "https://github.com/HELLSNAKES/image-random-api"
     console.log(result)
+    res.header("Content-Type", "application/json")
     res.send(JSON.stringify(result))
 })
 
