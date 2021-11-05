@@ -1,17 +1,17 @@
-const express = require("express")
-const app = express()
-const fs = require("fs")
+import express from "express"
+import fs from "fs"
+import cors from "cors"
+import rateLimit from "express-rate-limit"
+import bodyParser from "body-parser"
 const port = process.env.PORT || 5000
-const bodyParser = require("body-parser")
-const cors = require("cors")
-const rateLimit = require("express-rate-limit")
+const app = express()
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 100 // limit each IP to 100 requests per windowMs
 })
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
-app.use(express.static("images"))
+app.use(express.static("public"))
 app.use(limiter)
 app.use(cors())
 // api key
@@ -30,11 +30,11 @@ const apikey = [
 app.get("/", (req, res) => {
     res.send("https://github.com/HELLSNAKES/image-random-api")
 })
-app.get("/api/kurumi/:key", (req, res) => {
-    const key = req.params.key
+app.get("/kurumi", (req, res) => {
+    const key = req.query.apikey
     const result = {}
     result.code = 200
-    const imageList = fs.readdirSync("./images/")
+    const imageList = fs.readdirSync("./public/kurumi")
     const randomImage = imageList[Math.floor(Math.random() * imageList.length)]
     result.url = `127.0.0.1:5000/${randomImage}`
     result.author = "HELLSNAKE , Sunglows Team"
@@ -46,7 +46,27 @@ app.get("/api/kurumi/:key", (req, res) => {
     } else {
         const result = {}
         result.code = 403
-        result.message = "Invalid API key"
+        result.message = "Invalid API key, please contact admin to get key"
+        res.send(JSON.stringify(result))
+    }
+})
+app.get("/rushia", (req, res) => {
+    const key = req.query.apikey
+    const result = {}
+    result.code = 200
+    const imageList = fs.readdirSync("./public/rushia")
+    const randomImage = imageList[Math.floor(Math.random() * imageList.length)]
+    result.url = `127.0.0.1:5000/${randomImage}`
+    result.author = "HELLSNAKE , Sunglows Team"
+    result.source = "https://github.com/HELLSNAKES/image-random-api"
+    res.header("Content-Type", "application/json")
+    if (apikey.includes(key)) {
+        res.send(JSON.stringify(result))
+        console.log(result)
+    } else {
+        const result = {}
+        result.code = 403
+        result.message = "Invalid API key, please contact admin to get key"
         res.send(JSON.stringify(result))
     }
 })

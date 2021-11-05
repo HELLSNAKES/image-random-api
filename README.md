@@ -18,6 +18,9 @@ npm i
 ```
 npm start
 ```
-#### 5. Open http://127.0.1.1:5000/api/kurumi/0bk3s6IAyq
+#### 5. Open http://127.0.1.1:5000/kurumi?apikey=0bk3s6IAyq
 > Note : 0bk3s6IAyq is api key
 
+*endpoit 
+- /kurumi?apikey=
+- /rushia?apikey=
