@@ -24,3 +24,8 @@ npm start
 * endpoit 
 - /kurumi?apikey=
 - /rushia?apikey=
+
+## Video Installation instructions
+
+
+ [![a](https://i.ytimg.com/vi/8grd5gOyX7I/maxresdefault.jpg)](https://www.youtube.com/watch?v=8grd5gOyX7I)
