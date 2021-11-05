@@ -36,7 +36,7 @@ app.get("/kurumi", (req, res) => {
     result.code = 200
     const imageList = fs.readdirSync("./public/kurumi")
     const randomImage = imageList[Math.floor(Math.random() * imageList.length)]
-    result.url = `127.0.0.1:5000/${randomImage}`
+    result.url = `127.0.0.1:5000/kurumi/${randomImage}`
     result.author = "HELLSNAKE , Sunglows Team"
     result.source = "https://github.com/HELLSNAKES/image-random-api"
     res.header("Content-Type", "application/json")
@@ -56,7 +56,7 @@ app.get("/rushia", (req, res) => {
     result.code = 200
     const imageList = fs.readdirSync("./public/rushia")
     const randomImage = imageList[Math.floor(Math.random() * imageList.length)]
-    result.url = `127.0.0.1:5000/${randomImage}`
+    result.url = `127.0.0.1:5000/rushia/${randomImage}`
     result.author = "HELLSNAKE , Sunglows Team"
     result.source = "https://github.com/HELLSNAKES/image-random-api"
     res.header("Content-Type", "application/json")
