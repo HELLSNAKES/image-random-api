@@ -2,15 +2,12 @@ import express from "express"
 import fs from "fs"
 import cors from "cors"
 import rateLimit from "express-rate-limit"
-import bodyParser from "body-parser"
 const port = process.env.PORT || 5000
 const app = express()
 const limiter = rateLimit({
     windowMs: 15 * 60 * 1000, // 15 minutes
     max: 100 // limit each IP to 100 requests per windowMs
 })
-app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({ extended: true }))
 app.use(express.static("public"))
 app.use(limiter)
 app.use(cors())
