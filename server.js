@@ -39,15 +39,15 @@ app.get("/kurumi", (req, res) => {
     result.url = `127.0.0.1:5000/kurumi/${randomImage}`
     result.author = "HELLSNAKE , Sunglows Team"
     result.source = "https://github.com/HELLSNAKES/image-random-api"
-    res.header("Content-Type", "application/json")
+    res.header("Content-type", "application/json; charset=utf-8")
     if (apikey.includes(key)) {
-        res.send(JSON.stringify(result))
+        res.send(JSON.stringify(result, null, 2))
         console.log(result)
     } else {
         const result = {}
         result.code = 403
         result.message = "Invalid API key, please contact admin to get key"
-        res.send(JSON.stringify(result))
+        res.send(JSON.stringify(result, null, 2))
     }
 })
 app.get("/rushia", (req, res) => {
@@ -59,15 +59,15 @@ app.get("/rushia", (req, res) => {
     result.url = `127.0.0.1:5000/rushia/${randomImage}`
     result.author = "HELLSNAKE , Sunglows Team"
     result.source = "https://github.com/HELLSNAKES/image-random-api"
-    res.header("Content-Type", "application/json")
+    res.header("Content-type", "application/json; charset=utf-8")
     if (apikey.includes(key)) {
-        res.send(JSON.stringify(result))
+        res.send(JSON.stringify(result, null, 2))
         console.log(result)
     } else {
         const result = {}
         result.code = 403
         result.message = "Invalid API key, please contact admin to get key"
-        res.send(JSON.stringify(result))
+        res.send(JSON.stringify(result, null, 2))
     }
 })
 app.listen(port, "0.0.0.0", function () {
