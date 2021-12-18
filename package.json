@@ -21,7 +21,7 @@
   "homepage": "https://github.com/HELLSNAKES/image-random-api#readme",
   "dependencies": {
     "cors": "^2.8.5",
-    "express": "^4.17.1",
+    "express": "^4.17.2",
     "express-rate-limit": "^5.5.1"
   },
   "devDependencies": {
