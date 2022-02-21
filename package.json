@@ -22,7 +22,7 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.3",
-    "express-rate-limit": "^6.2.1"
+    "express-rate-limit": "^6.3.0"
   },
   "devDependencies": {
     "eslint": "^7.32.0",
